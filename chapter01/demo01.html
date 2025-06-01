@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo01</title>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="150" style="border: 1px dashed gray;"></canvas>
+    <script>
+        window.onload = function() {
+            // Check if the canvas element is supported by the browser
+            if (!document.getElementById("canvas")) {
+                alert("Your browser does not support the HTML5 canvas element.");
+                return;
+            }
+            // 1. Get the canvas element and draw on it
+            var canvas = document.getElementById("canvas");
+            if (canvas.getContext) {
+                // 2. Get the 2D drawing context and draw some shapes
+                var ctx = canvas.getContext("2d");
+                // 3. Draw rectangles with different colors
+                ctx.fillStyle = "blue";
+                ctx.fillRect(10, 10, 50, 50);
+                ctx.fillStyle = "red";
+                ctx.fillRect(70, 10, 50, 50);
+                ctx.fillStyle = "green";
+                ctx.fillRect(130, 10, 50, 50);
+            } else {
+                alert("Your browser does not support the HTML5 canvas element.");
+            }
+        };
+    </script>
+</body>
+</html>
