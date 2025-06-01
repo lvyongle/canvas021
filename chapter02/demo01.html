@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=k, initial-scale=1.0">
+    <title>demo01 直线绘制</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300" style="border: 1px solid gray;"></canvas>
+    <script>
+        window.onload=function(){
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+            ctx.moveTo(50,50);
+            ctx.lineTo(250,50);
+            ctx.stroke(); // 绘制直线
+
+            ctx.moveTo(50,100);
+            ctx.lineTo(250,100);
+            ctx.lineTo(50,150);
+            ctx.lineTo(250,150);
+            ctx.stroke(); // 绘制折线
+
+            ctx.moveTo(50,200);
+            ctx.lineTo(50,250);
+            ctx.lineTo(250,250);
+            ctx.lineTo(50,200);
+            ctx.stroke(); // 绘制多边形
+        }
+    </script>
+</body>
+</html>

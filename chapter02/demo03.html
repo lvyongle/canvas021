@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绘制多边形</title>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="800" style="border: 1px solid gray;"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        window.onload = function() {
+            var deg = 0; // 旋转角度
+            setInterval(function(){
+                deg = deg+10; // 更新旋转角度
+                var points = calcPolygonPoints(500, 400, 5, 100,deg); // 计算多边形顶点
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // 清除画布
+                createPolygon(ctx,points); // 创建多边形
+                
+            },50);// 每100毫秒更新一次画布
+            
+        };
+
+       // 计算多边形顶点的函数
+        function calcPolygonPoints(x,y,n,length,deg){
+            var points = []; // 存储多边形顶点的数组
+            var angle = (2 * Math.PI) / n; // 计算每个顶点的角度
+
+            for (var i = 0; i < n; i++) {
+                var pointX = x + length * Math.cos(i * angle+deg); // 计算顶点的X坐标
+                var pointY = y + length * Math.sin(i * angle+deg); // 计算顶点的Y坐标
+                points.push({ x: pointX, y: pointY }); // 将顶点添加到数组中
+            }
+            return points; // 返回多边形顶点数组
+        }
+
+        // 创建多边形函数
+        function createPolygon(ctx, points) {
+            ctx.beginPath(); // 开始路径
+            for (var i = 0; i < points.length; i++) {
+                if (i === 0) {
+                    ctx.moveTo(points[i].x, points[i].y); // 移动到第一个点
+                } else {
+                    ctx.lineTo(points[i].x, points[i].y); // 绘制到下一个点
+                }
+            }
+            ctx.closePath(); // 闭合路径
+            ctx.fillStyle = "rgba(50, 50, 136, 0.5)"; // 设置填充颜色
+            ctx.fill(); // 填充多边形
+        }
+    </script>
+</body>
+</html>
