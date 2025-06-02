@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五角星</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600" style="border: 1px dashed black;"></canvas>
+    <script>
+        window.onload = function() {
+            // 检查浏览器是否支持canvas元素
+            if (!document.getElementById("canvas")) {
+                alert("您的浏览器不支持HTML5 canvas元素。");
+                return;
+            }
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            ctx.beginPath();
+
+            var points = getStarPoints(400,300,100,50);
+            for(var i = 0; i < points.length; i++) {
+                ctx.lineTo(points[i].x, points[i].y); // 移动到第一个点
+            }
+            ctx.lineTo(points[0].x, points[0].y); // 移动到第一个点
+            ctx.closePath();
+            ctx.fillStyle="rgba(50,150,200,0.5)";
+            ctx.fill();
+        };
+        // 获取五角星顶点的函数
+        function getStarPoints(x,y,long,short) {
+            var points = []; // 存储五角星顶点的数组
+            var angle = (2 * Math.PI) / 5; // 每个顶点的角度
+            var halfAngle = angle / 2; // 每个顶点的半角度
+            for (var i = 0; i < 5; i++) {
+                var pointX1 = x + long * Math.cos(i * angle); // 计算顶点的X坐标
+                var pointY1 = y + long * Math.sin(i * angle); // 计算顶点的Y坐标
+                points.push({ x: pointX1, y: pointY1 }); // 将顶点添加到数组中
+
+                var pointX2 = x + short * Math.cos(i * angle + halfAngle ); // 计算顶点的X坐标
+                var pointY2 = y + short * Math.sin(i * angle + halfAngle ); // 计算顶点的Y坐标
+                points.push({ x: pointX2, y: pointY2 }); // 将顶点添加到数组中
+            }
+            return points; // 返回五角星顶点数组
+        }
+    </script>
+</body>
+</html>

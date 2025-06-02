@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方形调色板</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500" style="border: 1px solid gray;"></canvas>
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+            // 绘制方形调色板
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 10; j++) {
+                    ctx.fillStyle = `rgb(${i * 25}, ${j * 25}, ${(i + j) * 12})`; // 设置填充颜色
+                    ctx.fillRect(i * 50, j * 50, 50, 50); // 绘制方形
+                }
+            }
+        };
+        </script>
+</body>
+</html>
